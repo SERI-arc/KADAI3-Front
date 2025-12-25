@@ -14,8 +14,8 @@ export const useNationStore = defineStore('nation', {
     capitalLists: '',
     population: '',
     area: '',
-    region: 'japaneast',
-    endpoint: 'https://api.cognitive.microsofttranslator.com/',
+    //    region: 'japaneast',
+    //    endpoint: 'https://api.cognitive.microsofttranslator.com/',
     wentCountry: '',
     wentCountryList: [],
     wentFlag: '',
@@ -41,25 +41,25 @@ export const useNationStore = defineStore('nation', {
       }
       this.countryList.sort()
     },
-    async translate(text) {
-      try {
-        const response = await axios.post(
-          `${this.endpoint}translate?api-version=3.0&from=en&to=ja`,
-          [{ Text: text }],
-          {
-            headers: {
-              'Ocp-Apim-Subscription-Key': this.apiKey,
-              'Ocp-Apim-Subscription-Region': this.region,
-              'Content-Type': 'application/json',
-            },
-          },
-        )
-        this.capitalLists = response.data[0].translations[0].text
-        return this.capitalLists
-      } catch (error) {
-        console.error('Translation API Error:', error)
-      }
-    },
+    //    async translate(text) {
+    //      try {
+    //        const response = await axios.post(
+    //          `${this.endpoint}translate?api-version=3.0&from=en&to=ja`,
+    //          [{ Text: text }],
+    //          {
+    //            headers: {
+    //              'Ocp-Apim-Subscription-Key': this.apiKey,
+    //              'Ocp-Apim-Subscription-Region': this.region,
+    //              'Content-Type': 'application/json',
+    //            },
+    //          },
+    //        )
+    //        this.capitalLists = response.data[0].translations[0].text
+    //        return this.capitalLists
+    //      } catch (error) {
+    //        console.error('Translation API Error:', error)
+    //      }
+    //    },
     async searchCountry() {
       const res1 = await axios.get(`https://restcountries.com/v3.1/name/${this.countries}`)
       console.log(res1)
@@ -69,9 +69,7 @@ export const useNationStore = defineStore('nation', {
       this.population = this.population.toLocaleString()
       this.flag = res1.data[0].flags.png
       this.area = res1.data[0].region
-      console.log(this.area)
-      console.log(this.capitalList)
-      this.capitalLists = await this.translate(this.capitalList[0])
+      this.capitalLists = this.capitalList[0]
     },
 
     async registerWant() {
@@ -83,7 +81,7 @@ export const useNationStore = defineStore('nation', {
           Region: this.area,
           Flag: this.flag,
           Comment: this.comment,
-       },
+        },
       )
     },
 
