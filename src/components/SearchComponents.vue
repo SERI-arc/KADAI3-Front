@@ -58,10 +58,10 @@ const registerWant = computed(() => nationStore.registerWant)
       </v-col>
       <v-row align="center" justify="center">
         <v-col cols="auto">
-          <v-btn @click="registerWant">行きたい国に登録</v-btn>
+          <v-btn @click="registerWent">旅行した国に登録</v-btn>
         </v-col>
         <v-col cols="auto">
-          <v-btn @click="registerWent">旅行した国に登録</v-btn>
+          <v-btn @click="registerWant">行きたい国に登録</v-btn>
         </v-col>
       </v-row>
     </v-row>
