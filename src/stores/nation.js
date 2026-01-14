@@ -167,13 +167,15 @@ export const useNationStore = defineStore('nation', {
       }
         this.wentCountryList.sort()
     },
-
-  async searchHotel(wantCountry){
-      const apiKey=await axios.get(
+    async getApiKey(){
+        const apiKey=await axios.get(
         "https://m3h-serita-kadai3.greensea-425e64c6.japaneast.azurecontainerapps.io/api/API/SEARCH"
       )
       apiKey=this.apiKey
+      console.log(this.apiKey)
+    },
 
+  async searchHotel(wantCountry){
       const res =await axios.post(
        `https://places.googleapis.com/v1/places:searchText`,
         {

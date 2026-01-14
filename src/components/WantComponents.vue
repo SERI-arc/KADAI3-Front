@@ -18,6 +18,11 @@ watch(registerWantCountryList.value,()=>{
   nationStore.searchWantCountry()
 })
 
+onMounted(() => {
+  nationStore.getApiKey()
+})
+
+
 </script>
 
 <template>
