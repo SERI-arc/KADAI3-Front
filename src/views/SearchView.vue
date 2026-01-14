@@ -7,3 +7,5 @@ import Search from '../components/SearchComponents.vue'
     <Search />
   </v-container>
 </template>
+
+

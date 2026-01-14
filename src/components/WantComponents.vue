@@ -26,7 +26,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <v-container>
+  <v-container class="container">
     <v-row align="center" justify="center">
       <v-col cols="6">
         <v-select
@@ -35,19 +35,19 @@ onMounted(() => {
           v-model="nationStore.wantCountry">
         </v-select>
       </v-col>
-      <v-col cols="2">
-        <v-btn class="ml-3" size="large" rounded="pill" @click="searchHotel(nationStore.wantCountry)">
+      <v-col cols="4">
+        <v-btn height="50" width="150" rounded="pill" @click="searchHotel(nationStore.wantCountry)" >
           <v-icon icon="mdi-magnify" class="mr-1"></v-icon>
           ホテル検索
         </v-btn>
       </v-col>
     </v-row>
     <v-row>
-      <v-col v-for="hotelLists in hotelList" v-bind:key=hotelLists.ID cols="12">
+      <v-col v-for="hotelLists in hotelList" v-bind:key=hotelLists.ID cols="6">
         <v-row dense align="center" justify="center">
-          <v-card variant="elevated" elevation="5" color="#FAFAFA" class="w-50" rounded="x1" align="center" justify="center">
+          <v-card variant="elevated" elevation="5" color="#FAFAFA" class="w-80" height="750px" rounded="x1" align="center" justify="center">
             <div class="d-flex ">
-            <v-card color="#FAFAFA" variant="flat">
+            <v-card color="#FAFAFA" variant="flat" height="750px">
               <v-img :src="`${hotelLists.hotelPhotos}`"></v-img>
               <v-card-text >ホテル名：{{hotelLists.hotelName}}</v-card-text>
               <v-card-text >評価：{{hotelLists.hotelReview}}</v-card-text>
@@ -57,7 +57,6 @@ onMounted(() => {
                 </v-btn>
               </v-card-text>
               <v-btn class="ml-3" size="large" rounded="pill" @click="registerHotel(`${ hotelLists.hotelName }`,`${hotelLists.hotelReview}`,`${hotelLists.hotelPhotos}`,`${hotelLists.hotelUrl}`)">
-                <v-icon icon="mdi-magnify" class="mr-1"></v-icon>
                 お気に入り登録
              </v-btn>
             </v-card>
@@ -70,10 +69,7 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.map-container {
-  margin-top: 30px;
-  width: 100%;
-  height: 400px;
-  border: 1px solid #ccc;
-}
+  .container{
+    margin: 0 auto;
+  }
 </style>

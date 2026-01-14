@@ -29,7 +29,7 @@ watch(watchHotelList.value,()=>{
             <div class="d-flex ">
               <v-card color="#FAFAFA" variant="flat">
                 <v-img :src="`${selectHotelLIsts.hotelPhotos}`" ></v-img>
-                <v-card-text >ホテル名：{{selectHotelLIsts.hotelName}}</v-card-text>
+                <v-card-text >{{selectHotelLIsts.hotelName}}</v-card-text>
                 <v-card-text >評価：{{selectHotelLIsts.hotelReview}}</v-card-text>
                 <v-card-text>
                 <v-btn  v-bind:href="`${selectHotelLIsts.hotelUrl}`" text min-height="30" width="1000" class="x-small post-link align-center">

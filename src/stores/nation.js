@@ -172,7 +172,6 @@ export const useNationStore = defineStore('nation', {
         "https://m3h-serita-kadai3.greensea-425e64c6.japaneast.azurecontainerapps.io/api/API/SEARCH"
       )
       this.apiKey=apiKey.data
-      console.log(this.apiKey)
     },
 
   async searchHotel(wantCountry){

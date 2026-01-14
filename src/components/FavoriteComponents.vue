@@ -23,7 +23,7 @@ watch(registerWentCountryList.value,()=>{
 </script>
 
 <template>
-  <v-container>
+  <v-container class="container">
     <v-row align="center" justify="center">
       <v-col cols="6">
         <v-select
@@ -62,10 +62,7 @@ watch(registerWentCountryList.value,()=>{
 </template>
 
 <style scoped>
-.map-container {
-  margin-top: 30px;
-  width: 100%;
-  height: 400px;
-  border: 1px solid #ccc;
-}
+  .container{
+    margin: 0 auto;
+  }
 </style>
