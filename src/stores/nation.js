@@ -171,7 +171,7 @@ export const useNationStore = defineStore('nation', {
         const apiKey=await axios.get(
         "https://m3h-serita-kadai3.greensea-425e64c6.japaneast.azurecontainerapps.io/api/API/SEARCH"
       )
-      this.apiKey=apiKey
+      this.apiKey=apiKey.data
       console.log(this.apiKey)
     },
 
