@@ -4,17 +4,16 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <template>
   <v-app>
-    <v-app-bar style="background-color: rgb(128, 128, 128)" class="bar">
-      <v-app-bar-title class="text-white"
-        style="position: absolute; left: 50%; transform: translateX(-50%)"
+    <v-app-bar class="bar">
+      <v-app-bar-title class="title"
         >旅行先管理App
       </v-app-bar-title>
-      <nav>
-       <RouterLink to="/">検索</RouterLink>
-       <RouterLink to="/Favorite">旅行した国</RouterLink>
-       <RouterLink to="/Want">行きたい国</RouterLink>
-       <RouterLink to="/Hotel">ホテル</RouterLink>
-      </nav>
+        <nav>
+          <RouterLink to="/" class="Link">検索</RouterLink>
+          <RouterLink to="/Favorite" class="Link">旅行した国</RouterLink>
+          <RouterLink to="/Want" class="Link">行きたい国</RouterLink>
+          <RouterLink to="/Hotel" class="Link">ホテル</RouterLink>
+        </nav>
     </v-app-bar>
     <v-main>
      <RouterView />
@@ -26,10 +25,16 @@ import { RouterLink, RouterView } from 'vue-router'
 .bar {
   position: relative;
 }
+.title{
+  color:black;
+  float:right;
+}
 nav {
-  width: 100%;
   font-size: 12px;
   text-align: center;
-  margin-top: 2rem;
+  float:right;
+}
+.Link{
+  color:black;
 }
 </style>

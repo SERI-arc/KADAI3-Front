@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from 'vue'
+import { computed ,watch,onMounted} from 'vue'
 import { useNationStore } from '../stores/nation'
 
 const nationStore = useNationStore()
@@ -10,7 +10,15 @@ const wentArea = computed(() => nationStore.wentArea)
 const wentComment = computed(() => nationStore.wentComment)
 const wentCountries = computed(() => nationStore.wentCountries)
 const wentFlag = computed(() => nationStore.wentFlag)
-const areaCountryList = computed(() => nationStore. areaCountryList)
+const registerWentCountryList = computed(() => nationStore. registerWentCountryList)
+
+onMounted(() => {
+  nationStore.searchWentCountry()
+})
+
+watch(registerWentCountryList.value,()=>{
+  nationStore.searchWentCountry()
+})
 
 </script>
 
@@ -22,7 +30,7 @@ const areaCountryList = computed(() => nationStore. areaCountryList)
           :items="wentCountryList"
           label="国を選択してください"
           v-model="nationStore.wentCountry"
-        >
+        ><option v-for="wentCountryLists in wentCountryList.nation" v-bind:key="wentCountryLists.nation">{wentCountryLists}</option>
         </v-select>
       </v-col>
       <v-col cols="2">
@@ -36,32 +44,14 @@ const areaCountryList = computed(() => nationStore. areaCountryList)
       <v-col cols="12">
         <v-row align="center" justify="center">
          <v-card variant="elevated" elevation="5"
-          color="#FAFAFA" class="w-50" rounded="x1" align="center" justify="center">
-        <div class="d-flex justify-center">
+          color="#FAFAFA" class="w-50" rounded="x1" align="center" justify="center"  v-if="wentCountries!=''">
+        <div class="d-flex justify-center" >
           <v-card color="#FAFAFA"
             variant="flat">
            <v-img :src="`${ wentFlag }`"></v-img>
            <v-card-text>国名：{{wentCountries}}</v-card-text>
            <v-card-text>地域：{{wentArea}}</v-card-text>
            <v-card-text>コメント：{{wentComment}}</v-card-text>
-        </v-card>
-        </div>
-        </v-card>
-        </v-row>
-      </v-col>
-    </v-row>
-    <v-row dense align="center" justify="center">
-      <v-col v-for="areaCountryLists in areaCountryList" v-bind:key=areaCountryLists.ID cols="12">
-        <v-row align="center" justify="center">
-         <v-card variant="elevated" elevation="5"
-        color="#FAFAFA" class="w-50" rounded="x1" align="center" justify="center">
-        <div class="d-flex justify-center">
-          <v-card color="#FAFAFA"
-            variant="flat">
-           <v-img :src="`${ areaCountryLists.Flag }`"></v-img>
-           <v-card-text>国名："{{areaCountryLists.Country}}"</v-card-text>
-           <v-card-text>地域："{{areaCountryLists.Area}}"</v-card-text>
-           <v-card-text>コメント:"{{areaCountryLists.Comment}}"</v-card-text>
         </v-card>
         </div>
         </v-card>

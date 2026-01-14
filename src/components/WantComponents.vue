@@ -1,14 +1,22 @@
 <script setup>
-import { computed } from 'vue'
+import { computed,onMounted,watch } from 'vue'
 import { useNationStore } from '../stores/nation'
 
 const nationStore = useNationStore()
 
 const wantCountryList = computed(() => nationStore.wantCountryList)
+const registerWantCountryList = computed(() => nationStore.registerWantCountryList)
 const searchHotel = computed(() => nationStore.searchHotel)
 const hotelList =computed(() => nationStore.hotelList)
 const registerHotel = computed(() => nationStore.registerHotel)
 
+onMounted(() => {
+  nationStore.searchWantCountry()
+})
+
+watch(registerWantCountryList.value,()=>{
+  nationStore.searchWantCountry()
+})
 
 </script>
 
@@ -23,7 +31,7 @@ const registerHotel = computed(() => nationStore.registerHotel)
         </v-select>
       </v-col>
       <v-col cols="2">
-        <v-btn class="ml-3" size="large" rounded="pill" @click="searchHotel">
+        <v-btn class="ml-3" size="large" rounded="pill" @click="searchHotel(nationStore.wantCountry)">
           <v-icon icon="mdi-magnify" class="mr-1"></v-icon>
           ホテル検索
         </v-btn>
@@ -38,7 +46,11 @@ const registerHotel = computed(() => nationStore.registerHotel)
               <v-img :src="`${hotelLists.hotelPhotos}`"></v-img>
               <v-card-text >ホテル名：{{hotelLists.hotelName}}</v-card-text>
               <v-card-text >評価：{{hotelLists.hotelReview}}</v-card-text>
-              <v-card-text v-bind:href="`${hotelLists.hotelUrl}`">公式サイト:{{ hotelLists.hotelUrl }}</v-card-text>
+              <v-card-text>
+                <v-btn  v-bind:href="`${hotelLists.hotelUrl}`" text min-height="30" width="1000" class="x-small post-link align-center">
+                  <span class="url">公式サイト</span>
+                </v-btn>
+              </v-card-text>
               <v-btn class="ml-3" size="large" rounded="pill" @click="registerHotel(`${ hotelLists.hotelName }`,`${hotelLists.hotelReview}`,`${hotelLists.hotelPhotos}`,`${hotelLists.hotelUrl}`)">
                 <v-icon icon="mdi-magnify" class="mr-1"></v-icon>
                 お気に入り登録
